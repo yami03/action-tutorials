@@ -1,0 +1,27 @@
+# This is a basic workflow to help you get started with Actions
+
+name: CI
+
+# Controls when the action will run. Triggers the workflow on push or pull request
+# events but only for the master branch
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+
+# A workflow run is made up of one or more jobs that can run sequentially or in parallel
+jobs:
+  # This workflow contains a single job called "build"
+  build:
+    # The type of runner that the job will run on
+    runs-on: ubuntu-latest
+
+    # Steps represent a sequence of tasks that will be executed as part of the job
+    steps:
+    - name: context
+      # 환경변수 지정하기 COMMIT_ID = ${{ github.sha }} 이다라고 지정한거
+      # name을 쓰기 위해서는 echo "id is $COMMIT_Id"를 하면 id 값을 출력할 수 있다.
+      env: 
+        COMMIT_ID: ${{ github.sha }}
+      run: echo "commit id => $COMMIT_ID"
